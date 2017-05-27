@@ -43,6 +43,29 @@ $(function() {
     })
 
     //登录
+    $loginBox.find('button').on('click',function () {
+        // 通过ajax的方式去提交
+        $.ajax({
+            type: 'post',
+            url: 'api/user/login',
+            data:{
+                username:$loginBox.find('[name=username]').val(),
+                password:$loginBox.find('[name=password]').val()
+            },
+            dataType: 'json',
+            success: function (result) {
+                // console.log(result)
+                if(!result.code){
+                    $loginBox.find('.colWarning').html(result.message);
+                    setTimeout(function () {
+                        $userInfo.show();
+                        $loginBox.hide();
+                    },2000)
+                }
+            }
+
+        })
+    })
 
     //退出
 
