@@ -28,7 +28,7 @@
 
 ### 静态文件托管
 
-###小总结
+### 小总结
 
 用户发送http请求->url ->后端解析 -> 找到匹配的规则 -> 执行指定绑定的函数，返回对应的内容
 
@@ -37,3 +37,85 @@
 动态->处理业务逻辑  加载模板解析模板，返回数据给用户
 
 分模块开发
+
+1. 模块划分
+
+ 根据功能进行模块划分
+
+ 前台模块   后台管理模块  api模块
+
+ 使用app.use 进行模块划分
+
+ * app.use('/admin',require('./routes/admin'));
+ * app.use('/api',require('./routes/api'));
+ * app.use('/',require('./routes/main'));
+
+### 前台路由+模板
+
+#### main 模块
+1. /  首页
+2. /view  内容页
+
+#### api模块
+1. / 首页
+2. /register 注册
+3. /login  登录
+4. /comment  评论
+5. /comment/post 评论提交
+
+#### admin 模块
+ / 首页
+
+1.用户管理
+/user  用户列表
+
+2.分类管理
+
+/category   分类列表
+
+/category/add   分类添加
+
+/category/edit     分类修改
+
+/category/delete    分类删除
+
+
+
+2.文章内容管理
+
+/article   文章内容列表
+
+/article/add   文章内容添加
+
+/article/edit     文章内容修改
+
+/article/delete    文章内容删除
+
+2.评论内容管理
+
+/comment   评论列表
+
+/comment/delete   评论删除
+
+### 功能开发顺序
+
+用户 栏目  内容   评论
+
+### 编码顺序
+
+定义数据存储结构
+
+比如  注册登录管理验证 表的结构
+功能逻辑
+
+页面展示
+
+### 用户注册
+
+1. 用户表结构设计
+
+2. 注册界面
+3. 注册逻辑
+
+    * 使用ajax方式实现注册
+    * api接口编写
