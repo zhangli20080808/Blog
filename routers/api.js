@@ -7,6 +7,10 @@ var express = require('express');
 //router去匹配我们use定义的一些东西
 var router = express.Router();
 
+//user返回给我们的是一个构造函数，通过一些方法我们可以去操作数据库，通过这个模块，我们不用直接去操作数据库 而是像操作对象一样的去操作数据库
+var User = require('../models/users');
+
+
 //统一返回格式
 var responseData;
 router.use( function (req,res,next) {
@@ -50,11 +54,32 @@ router.post('/user/register',function (req,res,next) {
         res.json(responseData);
         return;
     }
-
-    responseData.message = '注册成功';
-    res.json(responseData)
-
-
+    //用户名是否已经被注册  如果数据库中存在和我们将要注册的数据的用户名同名的数据,表示用户名已经被注册
+    //数据库查询  通过模型 我们引入
+    User.findOne({
+        //第一个参数  查询条件 看数据库中的username和我们注册的是否同名 返回给我们的是一个promise对象
+        username: username
+    }).then(function (userInfo) {
+        // console.log(userInfo)  //null  不存在
+        if(userInfo){
+            //表示数据中有该记录
+            responseData.code = 4;
+            responseData.message = '用户名已经被注册'
+            res.json(responseData);
+            return;
+        }
+        //否则保存用户存在的信息到数据库中  这个user就代表我们要操作的数据库  直接传入
+        var user = new User({
+            username: username,
+            password: password
+        });
+        return user.save();
+    }).then(function (newUserInfo) {
+        console.log(newUserInfo);
+        responseData.message = '注册成功';
+        res.json(responseData);
+        return;
+    })
 });
 
 module.exports = router;
