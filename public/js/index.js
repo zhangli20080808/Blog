@@ -20,7 +20,7 @@ $(function() {
     $registerBox.find('button').on('click',function () {
         //通过ajax的方式去提交
         $.ajax({
-            types : 'post',
+            type : 'post',
             url:'/api/user/register',
             data: {
               username:$registerBox.find('[name=username]').val(),

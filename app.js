@@ -10,6 +10,8 @@ var express = require('express');
 var swig = require('swig');
 //加载数据库
 var mongoose = require('mongoose');
+//加载body-paser模块，处理post过来的数据
+var bodyParser = require('body-parser');
 
 //创建express应用  类似于nodejs中的http.createServer()
 var app  = express();
@@ -30,6 +32,10 @@ app.set('view engine','html');
 
 //在开发过程中，我们需要取消模板缓存
 swig.setDefaults({cache: false});
+
+//body-parser设置  调用这个属性，它自动会在req上面增加一个body属性，也就是提交过来的数据
+app.use( bodyParser.urlencoded({extended: true}) );
+
 
 var admin = require('./routers/admin');
 var api = require('./routers/api');
