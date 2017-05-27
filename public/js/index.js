@@ -31,7 +31,6 @@ $(function() {
             success:function (result) {
                 // console.log(result)
                 $registerBox.find('.colWarning').html(result.message);
-
                 if(!result.code){
                     setTimeout(function () {
                         $loginBox.show();
@@ -55,8 +54,9 @@ $(function() {
             dataType: 'json',
             success: function (result) {
                 // console.log(result)
+                $loginBox.find('.colWarning').html(result.message);
+
                 if(!result.code){
-                    $loginBox.find('.colWarning').html(result.message);
                     setTimeout(function () {
                         $userInfo.show();
                         $loginBox.hide();
