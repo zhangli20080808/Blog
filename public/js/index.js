@@ -35,7 +35,7 @@ $(function() {
                     setTimeout(function () {
                         $loginBox.show();
                         $registerBox.hide();
-                    },2000)
+                    },1000)
                 }
             }
         })
@@ -60,7 +60,12 @@ $(function() {
                     setTimeout(function () {
                         $userInfo.show();
                         $loginBox.hide();
-                    },2000)
+
+                        //显示用户信息
+                        $userInfo.find('.username').html(result.userInfo.username);
+                        $userInfo.find('.colDanger').html('你好，欢迎光临我的博客')
+
+                    },1000)
                 }
             }
 
