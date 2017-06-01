@@ -13,7 +13,7 @@ router.get('/',function (req,res) {
     //这里还可以接受第二个参数  传递给模板使用的数据
     // res.send('index-users');
     //分配模板使用的数据 我们动态的分配模板  在模板中能使用这个userInfo这个变量了 就是我们页面每次刷新的时候显示的是登录的信息呢，借助模板
-    // console.log(req.userInfo._id)
+    console.log(req.userInfo)
     res.render('main/index',{
         userInfo: req.userInfo
     })

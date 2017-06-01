@@ -79,16 +79,19 @@
             <div class="title"><span>用户信息</span></div>
             <p><span class="username">{{userInfo.username}}</span></p>
 
+            {% if userInfo.isAdmin %}
             <p>
-                <!--<span class="colDanger">你好，管理员！</span>-->
-                <!--<a href="">进入管理</a>-->
+                <span class="colDanger">你好，管理员！</span>
+                <a href="/admin">进入管理</a>
             </p>
-            <p><span class="colDanger"></span></p>
+            {% else %}
+            <p><span class="colDanger">你好，欢迎光临我的博客</span></p>
+            {%endif%}
 
             <p><span class="colDark"><a href="javascript:;" id="logout">退出</a></span></p>
         </div>
         {% else %}
-        <div class="rightBox" id="loginBox" style="display: none;">
+        <div class="rightBox" id="loginBox">
             <div class="title"><span>登录</span></div>
             <div class="line"><span class="colDark">用户名：</span><input name="username" type="text"/><em></em></div>
             <div class="line"><span class="colDark">密码：</span><input name="password" type="password"/><em></em></div>
@@ -99,7 +102,7 @@
             <p class="colWarning textCenter"></p>
         </div>
 
-        <div class="rightBox" id="registerBox" >
+        <div class="rightBox" id="registerBox" style="display: none;">
             <div class="title"><span>注册</span></div>
             <div class="line"><span class="colDark">用户名：</span><input name="username" type="text"/></div>
             <div class="line"><span class="colDark">密码：</span><input name="password" type="password"/></div>
@@ -113,8 +116,8 @@
         {%endif%}
         <div class="rightBox">
             <div class="title"><span>社区</span></div>
-            <p><a href="http://www.baidu.com" target="_blank" class="colDanger">nodejs</a></p>
-            <p><a href="http://www.nodeclass.com/api/mongoose.html#guide_models" target="_blank" class="colDanger">javascript</a>
+            <p><a href="http://cnodejs.org/" target="_blank" class="colDanger">nodejs</a></p>
+            <p><a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank" class="colDanger">javascript</a>
             </p>
         </div>
     </div>

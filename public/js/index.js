@@ -4,6 +4,7 @@ $(function() {
     var $registerBox = $('#registerBox');
     var $userInfo = $('#userInfo');
 
+
     //切换到注册面板
     $loginBox.find('a.colMint').on('click', function() {
         $registerBox.show();
@@ -63,8 +64,18 @@ $(function() {
             }
 
         })
-    })
+    });
 
     //退出
+    $('#logout').on('click',function () {
+        $.ajax({
+            url:'api/user/logout',
+            success: function (result) {
+                if(!result.code){
+                    window.location.reload();
+                }
+            }
+        })
+    })
 
 });

@@ -14,6 +14,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 //加载cookies
 var Cookies = require('cookies');
+var User = require('./models/users');
+
 //创建express应用  类似于nodejs中的http.createServer()
 var app = express();
 
@@ -33,15 +35,21 @@ app.use(function (req, res, next) {
     if (req.cookies.get('userInfo')) {
         try {
             req.userInfo = JSON.parse(req.cookies.get('userInfo'));
-        } catch (e) {
+            //获取当前用户登录的类型,是否是管理员
+            User.findById(req.userInfo._id).then(function (userInfo) {
+                req.userInfo.isAdmin = Boolean(userInfo.isAdmin);
+                next();
+            })
 
+        } catch (e) {
+            next();
         }
+    }else {
+        next();
     }
     //然后我们再通过get set方法来设置  刷新页面浏览器会发送一个header过去
     //我们测试一下
     // console.log(req.cookies.get('userInfo'));  //字符串  -》解析下
-
-    next();
 
 });
 //配置模板引擎
