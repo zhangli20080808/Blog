@@ -39,7 +39,7 @@ $(function() {
                 }
             }
         })
-    })
+    });
 
     //登录
     $loginBox.find('button').on('click',function () {
@@ -57,15 +57,8 @@ $(function() {
                 $loginBox.find('.colWarning').html(result.message);
 
                 if(!result.code){
-                    setTimeout(function () {
-                        $userInfo.show();
-                        $loginBox.hide();
-
-                        //显示用户信息
-                        $userInfo.find('.username').html(result.userInfo.username);
-                        $userInfo.find('.colDanger').html('你好，欢迎光临我的博客')
-
-                    },1000)
+                    //登录成功直接刷新页面
+                    window.location.reload();
                 }
             }
 
@@ -74,4 +67,4 @@ $(function() {
 
     //退出
 
-})
+});

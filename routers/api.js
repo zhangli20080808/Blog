@@ -99,7 +99,7 @@ router.post('/user/login',function (req,res) {
         username: username,
         password: password
     }).then(function (userInfo) {
-        console.log(userInfo);
+        // console.log(userInfo);
         if(!userInfo){
             responseData.code = 2;
             responseData.message = '用户名或密码错误';
@@ -111,8 +111,13 @@ router.post('/user/login',function (req,res) {
             _id: userInfo.id,
             username: userInfo.username
         };
+        //登录成功以后，我们要返回去一个cookies 浏览器得到这个cookies之后，会保存起来
+        req.cookies.set('userInfo',JSON.stringify({
+                _id: userInfo.id,
+                username: userInfo.username
+            }
+        ));
         res.json(responseData);
-
         return;
     })
 
