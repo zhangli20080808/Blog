@@ -15,14 +15,13 @@
     <div class="backimg"><img src="/public/images/IMG_0293.JPG"></div>
     <div class="logo"><span></span><img src="/public/images/00002637.png"></div>
 </header>
-
 <nav>
     <div class="menu">
         <a href="/" class="focus">首页</a>
-        <a href="/">js</a>
 
-        <a href="" class="focus">h5</a>
-        <a href="">css3</a>
+        {%for cate in categories%}
+        <a href="/?category={{cate.id}}">{{cate.name}}</a>
+        {%endfor%}
     </div>
 </nav>
 

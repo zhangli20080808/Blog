@@ -36,7 +36,7 @@ router.post('/user/register',function (req,res,next) {
     if(username == ''){
         responseData.code = 1;
         responseData.message = '用户名不能为空';
-        //如果出错，错误信息是要返回给前台  如何呢  res的一个方法
+        //如果出错，错误信息是要返回给前台  转化成json格式 如何呢  res的一个方法
         res.json(responseData);
         return;
     }
@@ -100,7 +100,7 @@ router.post('/user/login',function (req,res) {
         username: username,
         password: password
     }).then(function (userInfo) {
-        // console.log(userInfo);
+        console.log(userInfo);
         if(!userInfo){
             responseData.code = 2;
             responseData.message = '用户名或密码错误';

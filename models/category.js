@@ -7,3 +7,4 @@ var categorySchema = require('../schemas/category');
 
 //创建一个模型 完成一个模型类
 module.exports = mongoose.model('Category',categorySchema);
+
